@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Inspection Report - 3 Units</title>
+<style>
+/* ===== RESET ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:'Segoe UI',Tahoma,sans-serif;
+    background:#eef2f7;
+    line-height:1.6;
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#111827;
+    color:#fff;
+    padding:14px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:9999;
+}
+.btn{
+    background:#10b981;
+    border:none;
+    padding:10px 18px;
+    border-radius:6px;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+}
+.btn:hover{background:#059669}
+
+/* ===== PAGE ===== */
+.page{
+    max-width:1100px;
+    margin:110px auto 40px;
+    background:#fff;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+h1{text-align:center;letter-spacing:2px;margin-bottom:20px;}
+h2{
+    margin:25px 0 15px;
+    background:linear-gradient(to right,#1f2937,#374151);
+    color:#fff;
+    padding:10px 15px;
+    border-radius:6px;
+    font-size:15px;
+}
+.info{
+    background:#f3f4f6;
+    padding:15px;
+    border-radius:6px;
+    margin-bottom:20px;
+    font-size:14px;
+}
+.section{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-bottom:25px;
+}
+.details{flex:1 1 350px;font-size:14px;}
+.details ul{padding-left:20px}
+.details li{margin-bottom:8px}
+
+/* ===== IMAGE GRID ===== */
+.photo-grid{
+    flex:1 1 350px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+}
+.photo-box{
+    height:170px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#f3f4f6;
+    border:1px solid #d1d5db;
+    cursor:pointer;
+    position:relative;
+}
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .3s ease;
+}
+.photo-box:hover img{transform:scale(1.05)}
+
+/* ===== COMMENTS ===== */
+.comments-box{
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    padding:15px;
+    min-height:120px;
+    background:#fafafa;
+}
+.signature-line{
+    margin-top:50px;
+    border-top:1px solid #000;
+    width:250px;
+}
+
+/* ===== MODAL ===== */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.92);
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+}
+.modal img{
+    max-width:95%;
+    max-height:90vh;
+    transition:transform .3s;
+}
+.close-btn{
+    position:absolute;
+    top:25px;
+    right:40px;
+    font-size:40px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    .page{padding:25px}
+    .section{flex-direction:column}
+}
+
+/* ===== PRINT FIX ===== */
+@media print{
+    body{background:#fff}
+    .toolbar{display:none}
+    .page{margin:0;box-shadow:none;border-radius:0;page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+    <div><strong>PROFESSIONAL HOUSE INSPECTION REPORT</strong></div>
+    <button class="btn" onclick="window.print()">Download PDF</button>
+</div>
+
+<!-- ================= UNIT 1 ================= -->
+<div class="page">
+<h1>UNIT 1</h1>
+<div class="info">
+<b>Property Address:</b> Phase 3B Block 3 Lot 3 Camarin<br>
+<b>Inspection Date:</b> February 28, 2026 between 9am - 5 pm <br>
+<b>Inspector Name:</b> Jordan Cardines
+</div>
+
+<h2>Exterior & Paint</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Wall Paint Condition: 
+  <label><input type="checkbox" name="unit1_wall_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_wall_peeling"> Peeling</label>
+  <label><input type="checkbox" name="unit1_wall_cracked"> Cracked</label>
+</li>
+<li>
+  Roof Condition: 
+  <label><input type="checkbox" name="unit1_roof_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_roof_needs_repair"> Needs Repair</label>
+</li>
+
+<li>
+  Doors & Windows: 
+  <label><input type="checkbox" name="unit1_doors_proper" checked> Proper</label>
+  <label><input type="checkbox" name="unit1_doors_needs_adjustment"> Needs Adjustment</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+    <div class="photo-box"><img src="images/unit1/exterior1.jpeg" onclick="openModal(this.src)"></div>
+    <div class="photo-box"><img src="images/unit1/exterior2.jpeg" onclick="openModal(this.src)"></div>
+    <div class="photo-box"><img src="images/unit1/exterior3.jpeg" onclick="openModal(this.src)"></div>
+    <div class="photo-box"><img src="images/unit1/exterior4.jpeg" onclick="openModal(this.src)"></div>
+        <div class="photo-box"><img src="images/unit1/exterior5.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Interior, Switches & Bedroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Interior Paint: 
+  <label><input type="checkbox" name="unit1_interior_smooth"> Smooth</label>
+  <label><input type="checkbox" name="unit1_interior_stained" checked> Stained</label>
+  <label><input type="checkbox" name="unit1_interior_peeling"> Peeling</label>
+</li>
+
+<li>
+  Light Switches Working: 
+  <label><input type="checkbox" name="unit1_switches_yes" checked> Yes</label>
+  <label><input type="checkbox" name="unit1_switches_no"> No</label>
+</li>
+
+<li>
+  Electrical Outlets: 
+  <label><input type="checkbox" name="unit1_outlets_functional" checked> Functional</label>
+  <label><input type="checkbox" name="unit1_outlets_defective"> Defective</label>
+</li>
+
+<li>
+  Bedroom Walls Condition: 
+  <label><input type="checkbox" name="unit1_walls_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_walls_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_walls_needs_repaint"> Needs Repaint</label>
+</li>
+
+<li>
+  Bedroom Door Lock & Knob: 
+  <label><input type="checkbox" name="unit1_door_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_door_loose"> Loose</label>
+  <label><input type="checkbox" name="unit1_door_damaged"> Damaged</label>
+</li>
+
+<li>
+  Ceiling Condition: 
+  <label><input type="checkbox" name="unit1_ceiling_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_ceiling_water_stain"> Water Stain</label>
+  <label><input type="checkbox" name="unit1_ceiling_cracked"> Cracked</label>
+</li>
+
+<li>
+  Floor Tiles: 
+  <label><input type="checkbox" name="unit1_floor_intact" checked> Intact</label>
+  <label><input type="checkbox" name="unit1_floor_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_floor_hollow"> Hollow Sound</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit1/interior1.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit1/interior2.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit1/interior3.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit1/interior4.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit1/interior5.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Plumbing & Bathroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Faucet Leaks: 
+  <label><input type="checkbox" name="unit1_faucet_yes"> Yes</label>
+  <label><input type="checkbox" name="unit1_faucet_no" checked> No</label>
+</li>
+
+<li>
+  Toilet Flush: 
+  <label><input type="checkbox" name="unit1_toilet_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_toilet_not_working"> Not Working</label>
+</li>
+
+<li>
+  Drainage: 
+  <label><input type="checkbox" name="unit1_drainage_normal" checked> Normal</label>
+  <label><input type="checkbox" name="unit1_drainage_slow"> Slow</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit1/faucet.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit1/bath.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Comments</h2>
+<div class="comments-box">Unit 1 is generally clean and smells good. I noticed some faint marks on the walls. On the exterior, there is some water accumulation near the soft drinks area. In the bathroom, the walls are clean with a good smell</div>
+
+<div style="margin-top:40px;">
+<div><strong>Inspector Signature:</strong></div>
+<div class="signature-line"></div>
+<div style="margin-top:10px;"><strong>Printed Name:</strong> jordan cardines</div>
+</div>
+</div>
+
+<!-- ================= UNIT 2 ================= -->
+<div class="page">
+<h1>UNIT 2</h1>
+
+<div class="info">
+<b>Property Address:</b> Phase 3B Block 3 Lot 3 Camarin<br>
+<b>Inspection Date:</b> February 8, 2026 between 3 pm <br>
+<b>Inspector Name:</b> Jordan Cardines
+</div>
+
+<h2>Exterior & Paint</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Wall Paint Condition: 
+  <label><input type="checkbox" name="unit1_wall_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_wall_peeling"> Peeling</label>
+  <label><input type="checkbox" name="unit1_wall_cracked"> Cracked</label>
+</li>
+<li>
+  Roof Condition: 
+  <label><input type="checkbox" name="unit1_roof_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_roof_needs_repair"> Needs Repair</label>
+</li>
+
+<li>
+  Doors & Windows: 
+  <label><input type="checkbox" name="unit1_doors_proper" checked> Proper</label>
+  <label><input type="checkbox" name="unit1_doors_needs_adjustment"> Needs Adjustment</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+</div>
+</div>
+
+<h2>Interior, Switches & Bedroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Interior Paint: 
+  <label><input type="checkbox" name="unit1_interior_smooth" checked> Smooth</label>
+  <label><input type="checkbox" name="unit1_interior_stained"> Stained</label>
+  <label><input type="checkbox" name="unit1_interior_peeling"> Peeling</label>
+</li>
+
+<li>
+  Light Switches Working: 
+  <label><input type="checkbox" name="unit1_switches_yes" checked> Yes</label>
+  <label><input type="checkbox" name="unit1_switches_no"> No</label>
+</li>
+
+<li>
+  Electrical Outlets: 
+  <label><input type="checkbox" name="unit1_outlets_functional" checked> Functional</label>
+  <label><input type="checkbox" name="unit1_outlets_defective"> Defective</label>
+</li>
+
+<li>
+  Bedroom Walls Condition: 
+  <label><input type="checkbox" name="unit1_walls_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_walls_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_walls_needs_repaint"> Needs Repaint</label>
+</li>
+
+<li>
+  Bedroom Door Lock & Knob: 
+  <label><input type="checkbox" name="unit1_door_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_door_loose"> Loose</label>
+  <label><input type="checkbox" name="unit1_door_damaged"> Damaged</label>
+</li>
+
+<li>
+  Ceiling Condition: 
+  <label><input type="checkbox" name="unit1_ceiling_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_ceiling_water_stain"> Water Stain</label>
+  <label><input type="checkbox" name="unit1_ceiling_cracked"> Cracked</label>
+</li>
+
+<li>
+  Floor Tiles: 
+  <label><input type="checkbox" name="unit1_floor_intact" checked> Intact</label>
+  <label><input type="checkbox" name="unit1_floor_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_floor_hollow"> Hollow Sound</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit2/door1.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/door2.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/living.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/ceiling.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/wall.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/wall2.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Plumbing & Bathroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Faucet Leaks: 
+  <label><input type="checkbox" name="unit1_faucet_yes"> Yes</label>
+  <label><input type="checkbox" name="unit1_faucet_no" checked> No</label>
+</li>
+
+<li>
+  Toilet Flush: 
+  <label><input type="checkbox" name="unit1_toilet_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_toilet_not_working"> Not Working</label>
+</li>
+
+<li>
+  Drainage: 
+  <label><input type="checkbox" name="unit1_drainage_normal" checked> Normal</label>
+  <label><input type="checkbox" name="unit1_drainage_slow"> Slow</label>
+</li>
+</ul>
+</div>
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit2/faucet.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit2/bathroom.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Comments</h2>
+<div class="comments-box">The unit smells good. During the inspection, the owner had already cleaned the house. I did notice some faint stains on certain walls, particularly in the bathroom, but overall, the unit is well maintained.</div>
+
+<div style="margin-top:40px;">
+<div><strong>Inspector Signature:</strong></div>
+<div class="signature-line"></div>
+<div style="margin-top:10px;"><strong>Printed Name:</strong> Jordan Cardines</div>
+</div>
+</div>
+
+<!-- ================= UNIT 3 ================= -->
+<div class="page">
+<h1>UNIT 3</h1>
+
+<div class="info">
+Property Address: 789 Pine St<br>
+Inspection Date: 2026-03-04<br>
+Inspector Name: Mike Johnson
+</div>
+
+<h2>Exterior & Paint</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Wall Paint Condition: 
+  <label><input type="checkbox" name="unit1_wall_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_wall_peeling"> Peeling</label>
+  <label><input type="checkbox" name="unit1_wall_cracked"> Cracked</label>
+</li>
+<li>
+  Roof Condition: 
+  <label><input type="checkbox" name="unit1_roof_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_roof_needs_repair"> Needs Repair</label>
+</li>
+
+<li>
+  Doors & Windows: 
+  <label><input type="checkbox" name="unit1_doors_proper" checked> Proper</label>
+  <label><input type="checkbox" name="unit1_doors_needs_adjustment"> Needs Adjustment</label>
+</li>
+</ul>
+</div>
+
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit3/exterior1.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/exterior2.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Interior, Switches & Bedroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Interior Paint: 
+  <label><input type="checkbox" name="unit1_interior_smooth" checked> Smooth</label>
+  <label><input type="checkbox" name="unit1_interior_stained"> Stained</label>
+  <label><input type="checkbox" name="unit1_interior_peeling"> Peeling</label>
+</li>
+
+<li>
+  Light Switches Working: 
+  <label><input type="checkbox" name="unit1_switches_yes" checked> Yes</label>
+  <label><input type="checkbox" name="unit1_switches_no"> No</label>
+</li>
+
+<li>
+  Electrical Outlets: 
+  <label><input type="checkbox" name="unit1_outlets_functional" checked> Functional</label>
+  <label><input type="checkbox" name="unit1_outlets_defective"> Defective</label>
+</li>
+
+<li>
+  Bedroom Walls Condition: 
+  <label><input type="checkbox" name="unit1_walls_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_walls_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_walls_needs_repaint"> Needs Repaint</label>
+</li>
+
+<li>
+  Bedroom Door Lock & Knob: 
+  <label><input type="checkbox" name="unit1_door_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_door_loose"> Loose</label>
+  <label><input type="checkbox" name="unit1_door_damaged"> Damaged</label>
+</li>
+
+<li>
+  Ceiling Condition: 
+  <label><input type="checkbox" name="unit1_ceiling_good" checked> Good</label>
+  <label><input type="checkbox" name="unit1_ceiling_water_stain"> Water Stain</label>
+  <label><input type="checkbox" name="unit1_ceiling_cracked"> Cracked</label>
+</li>
+
+<li>
+  Floor Tiles: 
+  <label><input type="checkbox" name="unit1_floor_intact" checked> Intact</label>
+  <label><input type="checkbox" name="unit1_floor_cracked"> Cracked</label>
+  <label><input type="checkbox" name="unit1_floor_hollow"> Hollow Sound</label>
+</li>
+</ul>
+</div>
+
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit3/interior1.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/interior2.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/interior3.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/interior4.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/interior5.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Plumbing & Bathroom</h2>
+<div class="section">
+<div class="details">
+<ul>
+<li>
+  Faucet Leaks: 
+  <label><input type="checkbox" name="unit1_faucet_yes"> Yes</label>
+  <label><input type="checkbox" name="unit1_faucet_no" checked> No</label>
+</li>
+
+<li>
+  Toilet Flush: 
+  <label><input type="checkbox" name="unit1_toilet_working" checked> Working</label>
+  <label><input type="checkbox" name="unit1_toilet_not_working"> Not Working</label>
+</li>
+
+<li>
+  Drainage: 
+  <label><input type="checkbox" name="unit1_drainage_normal" checked> Normal</label>
+  <label><input type="checkbox" name="unit1_drainage_slow"> Slow</label>
+</li>
+</ul>
+</div>
+
+<div class="photo-grid">
+<div class="photo-box"><img src="images/unit3/bath1.jpeg" onclick="openModal(this.src)"></div>
+<div class="photo-box"><img src="images/unit3/bath2.jpeg" onclick="openModal(this.src)"></div>
+</div>
+</div>
+
+<h2>Comments</h2>
+<div class="comments-box">It appears that the owner has not fully prepared the unit for inspection. I noticed some spider webs on the walls. The owner mentioned that the ceiling has broken wood, as shown in the image. Overall, the unit smells good. The bathroom is well-maintained, and the exterior is clean with walls free of stains. Overall, the unit is in good condition.</div>
+
+<div style="margin-top:40px;">
+<div><strong>Inspector Signature:</strong></div>
+<div class="signature-line"></div>
+<div style="margin-top:10px;"><strong>Printed Name:</strong> jordan cardines</div>
+</div>
+</div>
+</div>
+<!-- Repeat sections with images and notes for Unit 3 -->
+</div>
+
+<!-- ===== IMAGE MODAL ===== -->
+<div id="imageModal" class="modal">
+<span class="close-btn" onclick="closeModal()">&times;</span>
+<img id="modalImage" onclick="toggleZoom()">
+</div>
+
+<script>
+const modal = document.getElementById('imageModal');
+const img = document.getElementById('modalImage');
+
+let isDragging = false;
+let startX = 0, startY = 0;
+let currentX = 0, currentY = 0;
+let zoomed = false;
+const scale = 1.6;
+
+// Open modal
+function openModal(src){
+    modal.style.display = 'flex';
+    img.src = src;
+    zoomed = false;
+    currentX = 0;
+    currentY = 0;
+    img.style.transform = 'translate(0px, 0px) scale(1)';
+    img.style.cursor = 'zoom-in';
+}
+
+// Close modal
+function closeModal(){ modal.style.display = 'none'; }
+
+// Toggle zoom
+function toggleZoom(){
+    zoomed = !zoomed;
+    if(zoomed){
+        img.style.cursor = 'grab';
+        img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
+    } else {
+        currentX = 0;
+        currentY = 0;
+        img.style.cursor = 'zoom-in';
+        img.style.transform = 'translate(0px, 0px) scale(1)';
+    }
+}
+
+// Start drag
+img.addEventListener('mousedown', e=>{
+    if(!zoomed) return;
+    isDragging = true;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+    img.style.cursor = 'grabbing';
+});
+
+// Dragging
+window.addEventListener('mousemove', e=>{
+    if(!isDragging) return;
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
+});
+
+// Stop drag
+window.addEventListener('mouseup', ()=>{
+    if(!isDragging) return;
+    isDragging = false;
+    img.style.cursor = 'grab';
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', e=>{
+    if(e.target === modal) closeModal();
+});
+</script>
+
+</body>
+</html>
